@@ -1,4 +1,4 @@
-package resolve;
+package other.resolve;
 
 import java.util.ArrayList;
 import java.util.List;

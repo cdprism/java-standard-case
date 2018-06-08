@@ -1,8 +1,8 @@
-package temp;
+package other.temp;
 
 /**
  * @author shancm
- * @pachage temp
+ * @pachage other.temp
  * @description:
  * @date 2018/5/30
  */
@@ -19,7 +19,7 @@ public class Temp {
 
     public static void main(String[] args) {
         Temp temp = new Temp();
-//        System.out.println(temp.getA());
+//        System.out.println(other.temp.getA());
         System.out.println("".equals(null));
     }
 }

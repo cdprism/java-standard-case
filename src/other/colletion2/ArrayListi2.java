@@ -1,8 +1,8 @@
-package colletion2;
+package other.colletion2;
 
 /**
  * @author shancm
- * @pachage colletion2
+ * @pachage other.colletion2
  * @description:
  * @date 2018/5/8
  */
