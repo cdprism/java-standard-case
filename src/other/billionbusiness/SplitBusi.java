@@ -20,10 +20,6 @@ public class SplitBusi {
 		File direction = new File("D:\\workspace\\billion-workspace\\billion-old-projects\\billion-trader\\billion-trader-core\\src\\main\\java\\com\\billion\\traderservice\\core\\service");
 
 
-
-
-
-
 		SplitBusi splitBusi = new SplitBusi();
 		Map<String, String> serviceMethodsMap = splitBusi.findServiceMethods(new File(""));
 		Set<Map.Entry<String, String>> entries = serviceMethodsMap.entrySet();
