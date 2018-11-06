@@ -33,4 +33,9 @@ public class Person {
                 ", age=" + age +
                 '}';
     }
+
+
+    public static void main(String[] args) {
+        System.out.println(new Person());
+    }
 }

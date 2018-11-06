@@ -1,6 +1,7 @@
 package java8.time;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author shancm
@@ -10,14 +11,10 @@ import java.time.LocalDate;
  */
 public class TimeCase {
     public static void main(String[] args) {
-//        List list = new ArrayList();
-//        for(int i=1; i<10; i++){
-//            list.add(i);
-//        }
-//        list.forEach(n -> System.out.println(n));
 
-//        LocalDateTime dateTime = LocalDateTime.now();
-//        System.out.println(dateTime);
+        LocalDateTime dateTime = LocalDateTime.now();
+        System.out.println(dateTime);
+        System.out.println(LocalDate.now());
 //        System.out.println(new Date());
 
 //        try {
