@@ -18,8 +18,6 @@ public class ReadNWrite {
             PrintWriter writer = new PrintWriter(os);
             writer.println("123");
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
