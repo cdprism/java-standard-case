@@ -3,6 +3,11 @@ package other.temp;
 import javax.sound.midi.Soundbank;
 import java.io.File;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
@@ -12,19 +17,19 @@ import java.util.*;
  * @date 2018/5/30
  */
 public class Temp {
-    private long aLong;
+	private long aLong;
 
-    private Integer a;
+	private Integer a;
 
-    public Integer getA() {
-        return a;
-    }
+	public Integer getA() {
+		return a;
+	}
 
-    public void setA(Integer a) {
-        this.a = a;
-    }
+	public void setA(Integer a) {
+		this.a = a;
+	}
 
-    public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 //        Temp temp = new Temp();
 //        System.out.println(other.temp.getA());
 //        System.out.println("".equals(null));
@@ -39,42 +44,70 @@ public class Temp {
 //        File file = new File("D:\\workspace\\billion-workspace\\billion-old-projects\\uubee_order\\uubee_order_core\\src\\main\\java\\com\\uubee\\order\\comp\\SyncCallService.java");
 //        System.out.println(file.getName().replace(".java", ""));
 
-        Temp sdf = new Temp();
-        Map<Integer, BigDecimal> integerBigDecimalMap = sdf.repayPlanCalculator(300000L, "36", 2, 3);
-//        Map<Integer, BigDecimal> integerBigDecimalMap = sdf.getPerMonthInterest(300000L, "36", 2, "3");
-        System.out.println(integerBigDecimalMap);
+//        Temp temp = new Temp();
 
-    }
+//        ZoneId zoneId = ZoneId.systemDefault();
+//        LocalDate localDate = LocalDate.now();
+//        localDate = localDate.plusDays(-1);
+//        ZonedDateTime zdt = localDate.atStartOfDay(zoneId);
+//        Date date = Date.from(zdt.toInstant());
 
-    public Map<Integer, BigDecimal> repayPlanCalculator(long principal, String yearRate, int month, int roundMode) {
-        Map<Integer, BigDecimal> res = new HashMap<>(month);
+//        System.out.println(date);
 
-        BigDecimal principalValue = new BigDecimal(String.valueOf(principal)).scaleByPowerOfTen(-2);
-        BigDecimal monthValue = new BigDecimal(String.valueOf(month));
-        BigDecimal rateValue = new BigDecimal(String.valueOf(yearRate)).scaleByPowerOfTen(-2);
-        //第一个月 本金/月份 + 本金*利率
-        for (int i = 1; i <= month; i++) {
-
-            BigDecimal currentPrincipal = principalValue.divide(monthValue, roundMode);
-            BigDecimal currentInterest = principalValue.multiply(rateValue).multiply(new BigDecimal(month - i + 1)).divide(new BigDecimal(12), roundMode);
-
-            res.put(i, currentPrincipal.add(currentInterest));
-        }
-        return res;
-    }
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Date parse = sdf.parse("2019-01-06");
+//        System.out.println(date.after(parse));
+//        System.out.println(parse.before(date));
+//        System.out.println(parse.after(new Date()));
 
 
-    public Map<Integer, BigDecimal> getPerMonthInterest(long principal, String yearRate, int totalMonth,String roundMode) {
-        Map<Integer, BigDecimal> map = new HashMap<Integer, BigDecimal>();
-        double yearRateVal = new BigDecimal(yearRate).scaleByPowerOfTen(-2).doubleValue();
-        double monthRate = yearRateVal/12;
-        BigDecimal monthInterest;
-        for (int i = 1; i < totalMonth + 1; i++) {
-            BigDecimal multiply = new BigDecimal(principal).multiply(new BigDecimal(monthRate));
-            BigDecimal sub  = new BigDecimal(Math.pow(1 + monthRate, totalMonth)).subtract(new BigDecimal(Math.pow(1 + monthRate, i-1)));
-            monthInterest = multiply.multiply(sub).divide(new BigDecimal(Math.pow(1 + monthRate, totalMonth) - 1), 2, 1);
-            map.put(i, monthInterest);
-        }
-        return map;
-    }
+//        List<String> list = new ArrayList<>(4);
+//        list.add("1");
+//        list.add("2");
+
+//        list.stream().filter()
+
+		Set<String> fileNames = new HashSet<>(12);
+		fileNames.add(".idea");
+		fileNames.add("target");
+		fileNames.add("cache");
+		fileNames.add("caches");
+		fileNames.add("logs");
+		fileNames.add("log");
+
+		File file = new File("D:\\workspace\\keynes-workspace");
+		delete(file, fileNames);
+
+
+
+	}
+
+
+
+	private static void delete(File root, Set<String> fileNames) {
+
+		File[] files = root.listFiles();
+		for (File file : files) {
+			if (file.isDirectory()) {
+				if ("target".equals(root.getName())) {
+					deleteDir(root);
+				}else {
+					delete(file, fileNames);
+				}
+			}
+		}
+	}
+
+	private static void deleteDir(File direct){
+		File[] files = direct.listFiles();
+		for (File file : files) {
+			if(file.isDirectory()){
+				deleteDir(file);
+			}else {
+				file.delete();
+			}
+		}
+	}
+
+
 }
